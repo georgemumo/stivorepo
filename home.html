@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven's Solar Installations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .carousel-wrapper input[type="radio"] {
+            display: none;
+        }
+
+        .carousel-inner {
+            width: 300%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #slide1:checked ~ .carousel-inner { transform: translateX(0%); }
+        #slide2:checked ~ .carousel-inner { transform: translateX(-33.333%); }
+        #slide3:checked ~ .carousel-inner { transform: translateX(-66.666%); }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .carousel-overlay h1 {
+            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            max-width: 800px;
+        }
+
+        .carousel-overlay p {
+            color: #e0e0e0;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background-color: #f39c12;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #d68910;
+            transform: translateY(-2px);
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: none;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .controls label {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        .controls label:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: #1a252f;
+        }
+
+        #slide1:checked ~ .control-1,
+        #slide2:checked ~ .control-2,
+        #slide3:checked ~ .control-3 {
+            display: flex;
+        }
+
+        .selection-section {
+            padding: 6rem 2rem;
+            background: #ffffff;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1a252f;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .interactive-flow-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .flow-path {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #f39c12, #16a085, #2980b9);
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .flow-node {
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .node-marker {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 6px solid #f39c12;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .flow-node:nth-child(2) .node-marker { border-color: #16a085; }
+        .flow-node:nth-child(3) .node-marker { border-color: #2980b9; }
+
+        .flow-node:hover .node-marker {
+            transform: scale(1.1);
+        }
+
+        .node-body {
+            background: #ffffff;
+            margin-left: 3rem;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #eaeaea;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .flow-node:hover .node-body {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .node-text h3 {
+            font-size: 1.8rem;
+            color: #1a252f;
+            margin-bottom: 0.8rem;
+        }
+
+.carousel-inner {
+    width: 300%;
+    height: 100%;
+    display: flex;
+    animation: automaticSlider 18s infinite ease-in-out;
+}
+
+@keyframes automaticSlider {
+    0%, 27.77% { transform: translateX(0%); }
+    33.33%, 61.11% { transform: translateX(-33.333%); }
+    66.66%, 94.44% { transform: translateX(-66.666%); }
+    100% { transform: translateX(0%); }
+}
+
+        .node-text p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            max-width: 750px;
+        }
+
+        .node-action form {
+            flex-shrink: 0;
+        }
+
+        .explore-submit-btn {
+            background-color: #1a252f;
+            color: #ffffff;
+            padding: 1rem 2.2rem;
+
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid #1a252f;
+        }
+
+        .flow-node:nth-child(1) .explore-submit-btn:hover { background-color: #f39c12; border-color: #f39c12; }
+        .flow-node:nth-child(2) .explore-submit-btn:hover { background-color: #16a085; border-color: #16a085; }
+        .flow-node:nth-child(3) .explore-submit-btn:hover { background-color: #2980b9; border-color: #2980b9; }
+
+        footer {
+            background-color: #1a252f;
+            color: #ffffff;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 992px) {
+            .node-body {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .node-action {
+                width: 100%;
+            }
+            .explore-submit-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-overlay h1 { font-size: 2rem; }
+            .carousel-overlay p { font-size: 1rem; }
+            .carousel-wrapper { height: 60vh; }
+            .section-header h2 { font-size: 2rem; }
+            .flow-path { left: 25px; }
+            .node-marker { width: 56px; height: 56px; font-size: 1.5rem; border-width: 4px; }
+            .node-body { margin-left: 1.5rem; padding: 1.5rem; }
+            .node-text h3 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+    </nav>
+
+    <div class="carousel-wrapper">
+        <input type="radio" name="slides" id="slide1" checked>
+        <input type="radio" name="slides" id="slide2">
+        <input type="radio" name="slides" id="slide3">
+
+        <div class="controls control-1">
+            <label for="slide3" class="prev-arrow">&#10094;</label>
+            <label for="slide2" class="next-arrow">&#10095;</label>
+        </div>
+        <div class="controls control-2">
+            <label for="slide1" class="prev-arrow">&#10094;</label>
+            <label for="slide3" class="next-arrow">&#10095;</label>
+        </div>
+        <div class="controls control-3">
+            <label for="slide2" class="prev-arrow">&#10094;</label>
+            <label for="slide1" class="next-arrow">&#10095;</label>
+        </div>
+
+        <div class="carousel-inner">
+
+            <div class="carousel-slide">
+                <img src="roof.jfif" alt="Black man on roof installing solar panels">
+                <div class="carousel-overlay">
+                    <h1>Power Your Home with Clean, Reliable Energy</h1>
+                    <p>Expert solar installations by Steven, tailored to lower your electricity bills and keep your lights on 24/7.</p>
+                    <a href="get_solar.html" class="cta-button">Get Your Solar ➔</a>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <img src="panels.jfif" alt="Modern sleek house with solar panel setup">
+                <div class="carousel-overlay">
+                    <h1>Say Goodbye to Blackouts & High Bills</h1>
+                    <p>From basic backup systems to complete off-grid independence, get a system engineered for maximum efficiency.</p>
+                    <a href="get_solar.html" class="cta-button">Get Your Solar ➔</a>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <img src="battery.jfif" alt="Black person working on a solar battery backup system">
+                <div class="carousel-overlay">
+                    <h1>Engineered for Reliability. Installed by Steven.</h1>
+                    <p>Premium components, seamless installation, and local support you can count on for years to come.</p>
+                    <a href="get_solar.html" class="cta-button">Get Your Solar ➔</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="choose-solar" class="selection-section">
+        <div class="section-header">
+            <h2>Explore Your Options</h2>
+            <p class="subtitle">Select the custom energy setup that best fits your immediate needs, and let Steven handle the engineering.</p>
+        </div>
+
+        <div class="interactive-flow-container">
+            <div class="flow-path"></div>
+
+            <div class="flow-node">
+                <div class="node-marker">🏠</div>
+                <div class="node-body">
+                    <div class="node-text">
+                        <h3>Residential Rooftop</h3>
+                        <p>Perfect for powering lights, TVs, refrigerators, and home electronics. Best for homeowners looking to reduce monthly utility bills or secure standard backup power during outages.</p>
+                    </div>
+                    <div class="node-action">
+                        <form action="#" method="POST">
+                            <input type="hidden" name="solar_package" value="residential">
+                            <button type="submit" class="explore-submit-btn">Explore</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-node">
+                <div class="node-marker">🚜</div>
+                <div class="node-body">
+                    <div class="node-text">
+                        <h3>Commercial & Farm Array</h3>
+                        <p>Heavy-duty solar setups designed for businesses, water pumping, agricultural machinery, or high-consumption industrial equipment. Engineered specifically to eliminate operational power overheads completely.</p>
+                    </div>
+                    <div class="node-action">
+                        <form action="#" method="POST">
+                            <input type="hidden" name="solar_package" value="commercial">
+                            <button type="submit" class="explore-submit-btn">Explore</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-node">
+                <div class="node-marker">🔋</div>
+                <div class="node-body">
+                    <div class="node-text">
+                        <h3>Hybrid Backup & Grid-Tie</h3>
+                        <p>Keep your existing grid connection but integrate an intelligent smart battery array and inverter. Ensures completely seamless power transitions the millisecond the main grid cuts out.</p>
+                    </div>
+                    <div class="node-action">
+                        <form action="#" method="POST">
+                            <input type="hidden" name="solar_package" value="backup">
+                            <button type="submit" class="explore-submit-btn">Explore</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Steven Solar Installations. All Rights Reserved. Engineered for excellence.</p>
+    </footer>
+
+</body>
+</html>

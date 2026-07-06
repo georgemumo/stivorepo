@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Solar Blueprint</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        .wizard-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f5;
+        }
+
+        /* Progress Bar */
+        .progress-wrapper {
+            margin-bottom: 2rem;
+        }
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #718096;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .progress-bar-bg {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background: #f39c12;
+            height: 100%;
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        /* Heading */
+        h2 {
+            font-size: 1.6rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        /* Wizard Steps */
+        .wizard-step {
+            display: none;
+        }
+        .wizard-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* Selection Options Grid */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .option-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+        .option-card:hover {
+            border-color: #cbd5e0;
+            background: #f7fafc;
+        }
+        .option-card.selected {
+            border-color: #f39c12;
+            background: #fffaf0;
+            color: #dd6b20;
+        }
+
+        /* Inputs for Final Step */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.4rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #f39c12;
+        }
+
+        /* Navigation Buttons */
+        .btn-wrapper {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        button {
+            padding: 0.8rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-back {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        .btn-back:hover {
+            background: #cbd5e0;
+        }
+        .btn-next {
+            background: #f39c12;
+            color: white;
+            flex-grow: 1;
+        }
+        .btn-next:hover {
+            background: #e67e22;
+        }
+        button:disabled {
+            background: #edf2f7;
+            color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .trust-banner {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-top: 2rem;
+            border-top: 1px solid #edf2f7;
+            padding-top: 1rem;
+        }
+
+        .success-box {
+            text-align: center;
+            padding: 1rem 0;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .success-icon {
+            font-size: 3.5rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wizard-container" id="wizardBox">
+
+
+    <form id="solarForm" action="https://formspree.io/f/xeebnwbe" method="POST" style="display: contents;">
+
+
+        <input type="hidden" name="Monthly Bill" id="hiddenBill">
+        <input type="hidden" name="Solar Goal" id="hiddenGoal">
+        <input type="hidden" name="Roof Type" id="hiddenRoof">
+
+
+        <div class="progress-wrapper" id="progressSection">
+            <div class="progress-text">
+                <span id="stepIndicator">Step 1 of 4</span>
+                <span id="percentIndicator">25% Complete</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+
+        <div class="wizard-step active" id="step1">
+            <h2>Let's Design Your Custom Solar System</h2>
+            <p class="subtitle">What is your average monthly electricity bill?</p>
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(1, 'Under 5,000 KES')">Under 5,000 KES</div>
+                <div class="option-card" onclick="selectOption(1, '5,000 - 15,000 KES')">5,000 – 15,000 KES</div>
+                <div class="option-card" onclick="selectOption(1, 'Over 15,000 KES')">Over 15,000 KES</div>
+            </div>
+        </div>
+
+
+        <div class="wizard-step" id="step2">
+            <h2>What is your primary energy goal?</h2>
+            <p class="subtitle">This helps our engineers pick the correct battery configuration.</p>
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(2, 'Eliminate power blackouts completely')">Eliminate power blackouts completely</div>
+                <div class="option-card" onclick="selectOption(2, 'Lower my monthly grid bill')">Lower my monthly grid bill</div>
+                <div class="option-card" onclick="selectOption(2, 'Go completely off-grid independent')">Go completely off-grid independent</div>
+            </div>
+        </div>
+
+
+        <div class="wizard-step" id="step3">
+            <h2>What type of roof structural framework do you have?</h2>
+            <p class="subtitle">This determines the mounting mounts required for your system layout.</p>
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(3, 'Sheet metal / Iron sheets')">Sheet metal / Iron sheets</div>
+                <div class="option-card" onclick="selectOption(3, 'Tiled Roof setup')">Tiled Roof setup</div>
+                <div class="option-card" onclick="selectOption(3, 'Concrete slab framework')">Concrete slab framework</div>
+                <div class="option-card" onclick="selectOption(3, 'Ground mount open space installation')">Ground mount open space installation</div>
+            </div>
+        </div>
+
+
+        <div class="wizard-step" id="step4">
+            <h2>Where should we send your custom blueprint?</h2>
+            <p class="subtitle">Provide your delivery details to lock in your free engineering review.</p>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" name="Customer Name" placeholder="e.g. John Kamau" oninput="validateStep4()">
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">Phone Number</label>
+                    <input type="tel" id="userPhone" name="Customer Phone" placeholder="e.g. 0712345678" oninput="validateStep4()">
+                </div>
+                <div class="form-group">
+                    <label for="userLocation">Your County / Location</label>
+                    <input type="text" id="userLocation" name="Customer Location" placeholder="e.g. Nairobi, Kajiado, Mombasa" oninput="validateStep4()">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="btn-wrapper" id="navigationControls">
+            <button type="button" class="btn-back" id="btnBack" onclick="changeStep(-1)" disabled>Back</button>
+            <button type="button" class="btn-next" id="btnNext" onclick="changeStep(1)" disabled>Next Step</button>
+        </div>
+
+    </form>
+
+    <div class="trust-banner" id="trustFooter">
+        Your data is secure. No financial obligation. Free professional review included.
+    </div>
+</div>
+
+<script>
+    let currentStep = 1;
+
+    const wizardSelections = {
+        billValue: "",
+        solarGoal: "",
+        roofType: ""
+    };
+
+    function selectOption(step, value) {
+        if (step === 1) {
+            wizardSelections.billValue = value;
+            document.getElementById('hiddenBill').value = value;
+        }
+        if (step === 2) {
+            wizardSelections.solarGoal = value;
+            document.getElementById('hiddenGoal').value = value;
+        }
+        if (step === 3) {
+            wizardSelections.roofType = value;
+            document.getElementById('hiddenRoof').value = value;
+        }
+
+        const currentActiveStepEl = document.getElementById(`step${step}`);
+        const cards = currentActiveStepEl.getElementsByClassName('option-card');
+        for (let card of cards) {
+            card.classList.remove('selected');
+            if (card.innerText === value) {
+                card.classList.add('selected');
+            }
+        }
+
+        document.getElementById('btnNext').disabled = false;
+    }
+
+    function validateStep4() {
+        const name = document.getElementById('userName').value.trim();
+        const phone = document.getElementById('userPhone').value.trim();
+        const location = document.getElementById('userLocation').value.trim();
+
+        document.getElementById('btnNext').disabled = !(name && phone && location);
+    }
+
+    function changeStep(direction) {
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+
+        currentStep += direction;
+
+        if (currentStep > 4) {
+            handleFormSubmission();
+            return;
+        }
+
+        document.getElementById(`step${currentStep}`).classList.add('active');
+
+        const percentage = currentStep * 25;
+        document.getElementById('progressBar').style.width = `${percentage}%`;
+        document.getElementById('stepIndicator').innerText = `Step ${currentStep} of 4`;
+        document.getElementById('percentIndicator').innerText = `${percentage}% Complete`;
+
+        document.getElementById('btnBack').disabled = (currentStep === 1);
+
+        if (currentStep === 4) {
+            document.getElementById('btnNext').innerText = "Submit Request";
+            validateStep4();
+        } else {
+            document.getElementById('btnNext').innerText = "Next Step";
+            const stepFieldMap = [null, wizardSelections.billValue, wizardSelections.solarGoal, wizardSelections.roofType];
+            document.getElementById('btnNext').disabled = !stepFieldMap[currentStep];
+        }
+    }
+
+    function handleFormSubmission() {
+        const form = document.getElementById('solarForm');
+        const btnNext = document.getElementById('btnNext');
+
+        btnNext.disabled = true;
+        btnNext.innerText = "Sending...";
+
+        // Submit form data asynchronously using AJAX Fetch API
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                showSuccessScreen();
+            } else {
+                alert("Oops! There was a problem submitting your form. Please try again.");
+                btnNext.disabled = false;
+                btnNext.innerText = "Submit Request";
+                currentStep = 4;
+            }
+        }).catch(error => {
+            alert("Network error. Please verify your connection and try again.");
+            btnNext.disabled = false;
+            btnNext.innerText = "Submit Request";
+            currentStep = 4;
+        });
+    }
+
+    function showSuccessScreen() {
+        const finalName = document.getElementById('userName').value;
+        const finalPhone = document.getElementById('userPhone').value;
+        const finalLoc = document.getElementById('userLocation').value;
+
+
+        document.getElementById('progressSection').style.display = "none";
+        document.getElementById('trustFooter').style.display = "none";
+        document.getElementById('navigationControls').style.display = "none";
+        document.getElementById('step4').style.display = "none";
+
+
+        document.getElementById('wizardBox').innerHTML = `
+            <div class="success-box">
+                <div class="success-icon">✓</div>
+                <h2>Thank You, ${finalName}!</h2>
+                <p class="subtitle" style="margin-bottom: 0.5rem;">Your solar feasibility request has been processed securely.</p>
+                <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.5;">Our engineering desk will review your building profile around <b>${finalLoc}</b> and contact you shortly on <b>${finalPhone}</b> with your tailored 3D system blueprint layout.</p>
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
