@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Steven's Solar Installations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navigation Bar (Identical to Home Page) */
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        nav .nav-links .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        /* Services Hero Banner */
+        .services-hero {
+            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('panels.jfif') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .services-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .services-hero p {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Services Grid Section */
+        .services-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #f39c12;
+        }
+
+        /* Custom top border colors to match home page flow nodes */
+        .service-card.commercial::before { background: #16a085; }
+        .service-card.hybrid::before { background: #2980b9; }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border-color: #f39c12;
+        }
+        .service-card.commercial:hover { border-color: #16a085; }
+        .service-card.hybrid:hover { border-color: #2980b9; }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: #1a252f;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+        }
+
+        .service-features li {
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            color: #f39c12;
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+        .service-card.commercial .service-features li::before { color: #16a085; }
+        .service-card.hybrid .service-features li::before { color: #2980b9; }
+
+        .service-btn {
+            display: inline-block;
+            background-color: #1a252f;
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid #1a252f;
+            transition: all 0.3s ease;
+        }
+
+        .service-card.residential .service-btn:hover { background-color: #f39c12; border-color: #f39c12; }
+        .service-card.commercial .service-btn:hover { background-color: #16a085; border-color: #16a085; }
+        .service-card.hybrid .service-btn:hover { background-color: #2980b9; border-color: #2980b9; }
+
+        /* Process Steps Section */
+        .process-section {
+            background-color: #1a252f;
+            color: #ffffff;
+            padding: 6rem 2rem;
+        }
+
+        .process-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .process-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .process-header p {
+            color: #bdc3c7;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #f39c12;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+        }
+
+        .step-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .step-card p {
+            color: #bdc3c7;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Call To Action Banner */
+        .cta-banner {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 6rem 2rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            color: #1a252f;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-banner-btn {
+            background-color: #f39c12;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+            display: inline-block;
+        }
+
+        .cta-banner-btn:hover {
+            background-color: #d68910;
+            transform: translateY(-2px);
+        }
+
+        /* Footer (Identical to Home Page) */
+        footer {
+            background-color: #1a252f;
+            color: #ffffff;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 1.2rem 1rem;
+            }
+            nav .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .services-hero h1 { font-size: 2.2rem; }
+            .services-hero p { font-size: 1rem; }
+            .services-section { padding: 4rem 1.5rem; }
+            .process-header h2 { font-size: 2rem; }
+            .cta-banner h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <section class="services-hero">
+        <h1>Our Engineered Solar Services</h1>
+        <p>From personalized engineering to high-efficiency components, discover the custom energy paths Steven builds to keep you powered forever.</p>
+    </section>
+
+    <section class="services-section">
+        <div class="services-grid">
+
+            <div class="service-card residential">
+                <span class="service-icon">🏠</span>
+                <h3>Residential Rooftop</h3>
+                <p>Cut your electricity bills drastically and secure your family's comfort with solar panels precision-matched to your household requirements.</p>
+                <ul class="service-features">
+                    <li>Custom structural roof analysis</li>
+                    <li>Premium Tier-1 solar panels</li>
+                    <li>Slick, modern roof integration</li>
+                    <li>Full system testing & handover</li>
+                </ul>
+                <a href="residential.html" class="service-btn">Explore Package</a>
+            </div>
+
+            <div class="service-card commercial">
+                <span class="service-icon">🚜</span>
+                <h3>Commercial & Farm</h3>
+                <p>Power commercial machinery, intensive agricultural water pumps, or complete retail systems to eliminate utility overheads entirely.</p>
+                <ul class="service-features">
+                    <li>Heavy-duty industrial array building</li>
+                    <li>Agricultural pump configuration</li>
+                    <li>ROI & savings forecasting projection</li>
+                    <li>Remote performance monitoring setup</li>
+                </ul>
+                <a href="commercialFarm.html" class="service-btn">Explore Package</a>
+            </div>
+
+            <div class="service-card hybrid">
+                <span class="service-icon">🔋</span>
+                <h3>Hybrid Backup & Grid-Tie</h3>
+                <p>Integrate a smart battery backup system that works hand-in-hand with the local grid. Switches to backup power instantly during failures.</p>
+                <ul class="service-features">
+                    <li>Smart intelligent hybrid inverter</li>
+                    <li>Long-lasting Lithium-ion storage</li>
+                    <li>Millisecond-fast backup transition</li>
+                    <li>Grid feedback configuration option</li>
+                </ul>
+                <a href="hybrid.html" class="service-btn">Explore Package</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="process-header">
+            <h2>The Installation Journey</h2>
+            <p>How Steven engineers your transition to clean energy, step by transparent step.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Consultation</h4>
+                <p>We look at your energy usage, analyze your space, and determine the optimal setup parameters.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Engineering</h4>
+                <p>Steven designs your system layout, matches specifications, and sources top-tier components.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Installation</h4>
+                <p>Our expert installation crew mounts, wires, and commissions your system carefully and securely.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Support</h4>
+                <p>We show you how to read your solar stats and stand by to handle regular cleanings and check-ups.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready to Lock In Clean Energy?</h2>
+        <p>Let’s build a highly efficient system tailored exactly to your home, business, or farm's electricity needs.</p>
+        <a href="commercial-farm-assessment.html" class="cta-banner-btn">Get A Free Quote ➔</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Steven Solar Installations. All Rights Reserved. Engineered for excellence.</p>
+    </footer>
+
+</body>
+</html>

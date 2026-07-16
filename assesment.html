@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Energy Assessment - StevenSolar</title>
+    <style>
+        /* Global Styles & Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7fafc; /* Matches homepage clean background */
+            color: #334155;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+          nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Dark Navigation Bar (StevenSolar Header) */
+        header {
+            background-color: #121d2b;
+            padding: 18px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #f0a500; /* Signature StevenSolar Orange */
+        }
+
+        .back-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #f0a500;
+            color: #f0a500;
+        }
+
+        /* Form Header Section */
+        .form-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-intro h1 {
+            font-size: 32px;
+            color: #121d2b;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .form-intro p {
+            color: #718096;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Core Card Form Wrapper (Starting exactly with the Form Tag) */
+        form.assessment-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            padding: 45px;
+            display: block;
+        }
+
+        /* Color Mix Accent Line top of form */
+        .form-accent-line {
+            height: 4px;
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(to right, #f0a500, #2a9d8f, #2b7cb6);
+            margin-top: -45px;
+            margin-left: -45px;
+            margin-right: -45px;
+            width: calc(100% + 90px);
+            margin-bottom: 35px;
+        }
+
+        /* Section Breakdowns */
+        .form-section {
+            margin-bottom: 45px;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 35px;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #121d2b;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Section Number Badges using StevenSolar Colors */
+        .section-num {
+            background-color: #fefaf0;
+            color: #f0a500;
+            border: 2px solid #f0a500;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .section-num.teal {
+            background-color: #eefdfa;
+            color: #2a9d8f;
+            border-color: #2a9d8f;
+        }
+
+        .section-num.blue {
+            background-color: #eef7fd;
+            color: #2b7cb6;
+            border-color: #2b7cb6;
+        }
+
+        /* Input Controls */
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #2d3748;
+            background-color: #fdfdfd;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input:focus, select:focus {
+            border-color: #2a9d8f;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+            background-color: #ffffff;
+        }
+
+        /* Grid selection options (Radio / Checkbox cards) */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .option-card {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-card:hover {
+            border-color: #f0a500;
+            background-color: #fefaf0;
+        }
+
+        .option-card input[type="radio"],
+        .option-card input[type="checkbox"] {
+            accent-color: #f0a500;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-card span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        /* Submit / Navigation buttons */
+        .form-actions {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background-color: #121d2b;
+            color: #ffffff;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 16px 44px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d2f44;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            form.assessment-card {
+                padding: 24px;
+            }
+            .form-accent-line {
+                margin-top: -24px;
+                margin-left: -24px;
+                margin-right: -24px;
+                width: calc(100% + 48px);
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="container">
+        <div class="form-intro">
+            <h1>Begin Energy Assessment</h1>
+            <p>Provide detailed parameters regarding your utility history, roof infrastructure, and future usage intentions to receive a production-grade system specification blueprint.</p>
+        </div>
+
+        <form class="assessment-card" action="#" method="POST">
+            <div class="form-accent-line"></div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <span class="section-num">1</span>
+                    <h3>Utility & Consumption Profile</h3>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="avg-consumption">Average Monthly Consumption (kWh)</label>
+                        <input type="number" id="avg-consumption" name="avg_consumption" placeholder="e.g., 350" required min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="connection-phase">Service Connection Phase</label>
+                        <select id="connection-phase" name="connection_phase" required>
+                            <option value="" disabled selected>Choose electrical line phase...</option>
+                            <option value="single">Single-Phase (Standard Domestic)</option>
+                            <option value="three">Three-Phase (Heavy Duty / Multi-structure)</option>
+                            <option value="unsure">Unsure (Needs on-site checking)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Daily Load Distribution (When is your household most active?)</label>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="load_distribution" value="morning-midday" checked>
+                            <span>Morning & Midday (7 AM - 4 PM)</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="load_distribution" value="evening-peak">
+                            <span>Evening Peak (5 PM - 11 PM)</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="load_distribution" value="constant">
+                            <span>Constant / Continuous 24h load</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <span class="section-num teal">2</span>
+                    <h3>Rooftop & Structural Feasibility</h3>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="roof-material">Primary Roof Material</label>
+                        <select id="roof-material" name="roof_material" required>
+                            <option value="" disabled selected>Select structural roof material...</option>
+                            <option value="concrete-tile">Clay / Concrete Roof Tiles</option>
+                            <option value="metal-sheet">Corrugated Iron / Metal Roofing Sheet</option>
+                            <option value="flat-slab">Flat Concrete Slab</option>
+                            <option value="decra-shingle">Decra or Asphalt Shingles</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="roof-age">Approximate Roof Structural Age (Years)</label>
+                        <select id="roof-age" name="roof_age" required>
+                            <option value="" disabled selected>Choose approximate age...</option>
+                            <option value="new">Under 5 Years (Excellent Condition)</option>
+                            <option value="mid">5 to 15 Years (Stable Structural State)</option>
+                            <option value="old">Over 15 Years (May need structural prep)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="roof-obstructions">Rooftop Obstructions (Select primary block)</label>
+                        <select id="roof-obstructions" name="roof_obstructions" required>
+                            <option value="none">No major obstructions</option>
+                            <option value="skylights">Skylights / Glass Roof Windows</option>
+                            <option value="chimney-vent">Chimney stacks / Ventilation ducts</option>
+                            <option value="water-tanks">Elevated gravity-fed water tanks</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="roof-pitch">Roof Profile Tilt Angle (Pitch)</label>
+                        <select id="roof-pitch" name="roof_pitch" required>
+                            <option value="standard">Standard Sloped Pitch (15° to 30°)</option>
+                            <option value="flat">Completely Flat / Very Low Angle (0° to 10°)</option>
+                            <option value="steep">Steep Pitch (Above 30°)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <span class="section-num teal">3</span>
+                    <h3>Environmental Factors & Shading</h3>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="shading-source">Primary Shade Obstruction Source</label>
+                        <select id="shading-source" name="shading_source" required>
+                            <option value="clear">No nearby tall trees or towering buildings</option>
+                            <option value="trees">Surrounding canopy trees (Moderate leaf debris)</option>
+                            <option value="buildings">Adjoining taller buildings (Casts shadow profiles)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="environment-dust">Environmental Soiling Risk</label>
+                        <select id="environment-dust" name="environment_dust" required>
+                            <option value="standard">Clean Urban / Suburb setting</option>
+                            <option value="high">High Dust (Close to dirt roads or construction zones)</option>
+                            <option value="coastal">Coastal (Corrosive salty sea-breeze air)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <span class="section-num blue">4</span>
+                    <h3>Electrical Safety & Backup Priorities</h3>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="panel-rating">Main Incomer Breaker Rating (Amps)</label>
+                        <select id="panel-rating" name="panel_rating" required>
+                            <option value="63a">63 Amps (Standard residential breaker)</option>
+                            <option value="100a">100 Amps</option>
+                            <option value="other-unknown">Other rating / Unsure</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="backup-priority">Blackout Backup Storage Preference</label>
+                        <select id="backup-priority" name="backup_priority" required>
+                            <option value="essentials">Essential Circuits Only (Lights, Router, Fridge, TV)</option>
+                            <option value="heavy-loads">Entire Household Load (Including water pumps & washing machines)</option>
+                            <option value="none-grid">Grid-Tie Only (No backup battery storage integration)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <span class="section-num blue">5</span>
+                    <h3>Future Planning & Personal Details</h3>
+                </div>
+
+                <div class="input-group">
+                    <label>Are you planning to install any heavy loads in the next 12-24 months?</label>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="checkbox" name="future_loads" value="ev-charger">
+                            <span>Electric Vehicle (EV) Charger</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="checkbox" name="future_loads" value="air-con">
+                            <span>New Air Conditioning units</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="checkbox" name="future_loads" value="water-pump">
+                            <span>High-capacity Water Pump</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-grid" style="margin-top: 30px;">
+                    <div class="input-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full_name" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., 0712 345 678" required>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label for="physical-address">Residential Address / Estate</label>
+                        <input type="text" id="physical-address" name="physical_address" placeholder="e.g., Kilimani, Nairobi" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">SUBMIT FOR REVIEW</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>

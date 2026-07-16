@@ -18,6 +18,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Top Navigation Bar with Right-Aligned Links */
         nav {
             background-color: #1a252f;
             padding: 1rem 2rem;
@@ -39,6 +40,26 @@
             color: #ffffff;
         }
 
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Hero Carousel Styling */
         .carousel-wrapper {
             position: relative;
             width: 100%;
@@ -54,7 +75,14 @@
             width: 300%;
             height: 100%;
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            animation: automaticSlider 18s infinite ease-in-out;
+        }
+
+        @keyframes automaticSlider {
+            0%, 27.77% { transform: translateX(0%); }
+            33.33%, 61.11% { transform: translateX(-33.333%); }
+            66.66%, 94.44% { transform: translateX(-66.666%); }
+            100% { transform: translateX(0%); }
         }
 
         .carousel-slide {
@@ -163,6 +191,7 @@
             display: flex;
         }
 
+        /* Selection Section & Grid Node Flows */
         .selection-section {
             padding: 6rem 2rem;
             background: #ffffff;
@@ -262,20 +291,6 @@
             margin-bottom: 0.8rem;
         }
 
-.carousel-inner {
-    width: 300%;
-    height: 100%;
-    display: flex;
-    animation: automaticSlider 18s infinite ease-in-out;
-}
-
-@keyframes automaticSlider {
-    0%, 27.77% { transform: translateX(0%); }
-    33.33%, 61.11% { transform: translateX(-33.333%); }
-    66.66%, 94.44% { transform: translateX(-66.666%); }
-    100% { transform: translateX(0%); }
-}
-
         .node-text p {
             color: #666;
             line-height: 1.6;
@@ -291,7 +306,6 @@
             background-color: #1a252f;
             color: #ffffff;
             padding: 1rem 2.2rem;
-
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
@@ -314,6 +328,7 @@
             font-size: 0.95rem;
         }
 
+        /* Responsiveness Adjustments */
         @media (max-width: 992px) {
             .node-body {
                 flex-direction: column;
@@ -329,6 +344,17 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 1.2rem 1rem;
+            }
+            nav .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             .carousel-overlay h1 { font-size: 2rem; }
             .carousel-overlay p { font-size: 1rem; }
             .carousel-wrapper { height: 60vh; }
@@ -344,6 +370,12 @@
 
     <nav>
         <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
     </nav>
 
     <div class="carousel-wrapper">
@@ -413,7 +445,7 @@
                         <p>Perfect for powering lights, TVs, refrigerators, and home electronics. Best for homeowners looking to reduce monthly utility bills or secure standard backup power during outages.</p>
                     </div>
                     <div class="node-action">
-                        <form action="#" method="POST">
+                        <form action="residential.html" method="POST">
                             <input type="hidden" name="solar_package" value="residential">
                             <button type="submit" class="explore-submit-btn">Explore</button>
                         </form>
@@ -429,7 +461,7 @@
                         <p>Heavy-duty solar setups designed for businesses, water pumping, agricultural machinery, or high-consumption industrial equipment. Engineered specifically to eliminate operational power overheads completely.</p>
                     </div>
                     <div class="node-action">
-                        <form action="#" method="POST">
+                        <form action="commercialFarm.html" method="POST">
                             <input type="hidden" name="solar_package" value="commercial">
                             <button type="submit" class="explore-submit-btn">Explore</button>
                         </form>
@@ -445,7 +477,7 @@
                         <p>Keep your existing grid connection but integrate an intelligent smart battery array and inverter. Ensures completely seamless power transitions the millisecond the main grid cuts out.</p>
                     </div>
                     <div class="node-action">
-                        <form action="#" method="POST">
+                        <form action="hybrid.html" method="POST">
                             <input type="hidden" name="solar_package" value="backup">
                             <button type="submit" class="explore-submit-btn">Explore</button>
                         </form>

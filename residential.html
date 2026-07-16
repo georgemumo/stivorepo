@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Rooftop Solar Solutions | Elite Edition</title>
+    <style>
+        /* Modern Reset & Variable Setup */
+        :root {
+            --bg-dark: #0b0f17;
+            --card-bg: #161d2a;
+            --accent-gold: #f59e0b;
+            --accent-green: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #243046;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        nav .nav-links .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        /* Premium Navigation Header */
+        header {
+            background-color: rgba(11, 15, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: var(--border-color);
+            border-color: var(--text-muted);
+            transform: translateX(-3px);
+        }
+
+        
+        .hero-section {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(to right, var(--accent-green), #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        
+        .hero-widget {
+            background: linear-gradient(145deg, var(--card-bg), #111827);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .hero-widget::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--border-color), var(--accent-green));
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .widget-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .widget-stat {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .widget-stat span {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .widget-stat strong {
+            font-size: 20px;
+            color: var(--accent-green);
+        }
+
+        
+        .section-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 80px auto 40px auto;
+        }
+
+        .section-intro h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .benefit-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .benefit-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            margin-bottom: 24px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        
+        .flow-section {
+            background-color: #111827;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 80px 0;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .flow-step {
+            position: relative;
+        }
+
+        .step-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .flow-step h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+
+        .flow-step p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        
+        .specs-section {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .specs-text h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specs-list li span {
+            color: var(--text-muted);
+        }
+
+        .specs-list li strong {
+            color: var(--text-main);
+        }
+
+        
+        .cta-wrapper {
+            margin-bottom: 100px;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border: 1px solid #312e81;
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card h2 {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .cta-card p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-gold), #f5b02b);
+            color: #0b0f17;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 18px 44px;
+            border-radius: 100px;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
+        }
+
+        
+        footer {
+            background-color: #05070a;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        
+        @media (max-width: 992px) {
+            .hero-section, .specs-section {
+                grid-template-columns: 1fr;
+            }
+            .hero-text {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .benefits-grid, .flow-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+    
+    <section class="container">
+        <div class="hero-section">
+            <div class="hero-text">
+                <span class="badge"><span class="badge-dot"></span>Residential Division</span>
+                <h1>Clean energy, <span>built to completely replace</span> your power bill.</h1>
+                <p>No more soaring grid tariffs or sudden grid dropouts. Our advanced residential setups combine architectural-grade monocrystalline panels with smart storage to power your lifestyle seamlessly.</p>
+                <a href="assesment.html" class="primary-btn">Begin Energy Assessment</a>
+            </div>
+            
+            <div class="hero-widget">
+                <div class="widget-title">
+                    <span>Performance Mockup</span>
+                    <span style="color: var(--accent-green);">● Active</span>
+                </div>
+                <div class="widget-stat">
+                    <span>Est. Monthly Savings</span>
+                    <strong>92% Offset</strong>
+                </div>
+                <div class="widget-stat">
+                    <span>Average Return Period</span>
+                    <strong>4.8 Years</strong>
+                </div>
+                <div class="widget-stat" style="margin-bottom: 0;">
+                    <span>System Lifespan Guarantee</span>
+                    <strong>25 Years</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="container">
+        <div class="section-intro">
+            <h2>Core Innovations</h2>
+            <p>Designed around modern home configurations to guarantee stability, aesthetics, and optimal grid-offset value.</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💲</div>
+                <h3>Maximized Grid Offsets</h3>
+                <p>Run heavy loads like cooling, pool pumps, and HVACs during peak sunshine windows to virtually bring your grid demand to zero.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔋</div>
+                <h3>Blackout Immunity</h3>
+                <p>Smart auto-transfer switches isolate your house within milliseconds of grid detection loss. Never face unexpected darkness.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>Property Equity</h3>
+                <p>Premium architectural setups act as immediate capital upgrades, dramatically raising home value to future green buyers.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="flow-section">
+        <div class="container">
+            <div class="section-intro" style="margin-top: 0;">
+                <h2>The Deployment Road</h2>
+                <p>How we transition your property cleanly with minimal routine interruption.</p>
+            </div>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <div class="step-num">01</div>
+                    <h4>3D Structural Scan</h4>
+                    <p>We model your roof angles and shadowing obstacles digitally to determine peak optimization angles.</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-num">02</div>
+                    <h4>Swift Structural Mount</h4>
+                    <p>Engineered hardware anchors the system securely, guaranteeing complete leak-free roofing integration.</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-num">03</div>
+                    <h4>App Syncing & Activation</h4>
+                    <p>Sync your mobile application, verify battery-reserve paths, and flip the switch to autonomous power generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="container specs-section">
+        <div class="specs-text">
+            <h2>Hardware Architecture Specs</h2>
+            <p>We skip sub-standard setups. Our core residential inventory features elite, long-lasting industrial standards adapted for residential use.</p>
+        </div>
+        <div>
+            <ul class="specs-list">
+                <li>
+                    <span>Solar Panels</span>
+                    <strong>Premium Tier-1 N-Type Monocrystalline</strong>
+                </li>
+                <li>
+                    <span>Panel Efficiency Rating</span>
+                    <strong>Up to 22.8% Output Efficiency</strong>
+                </li>
+                <li>
+                    <span>Smart Inverters</span>
+                    <strong>Hybrid High-Frequency Pure Sine Wave</strong>
+                </li>
+                <li>
+                    <span>Battery Storage Integration</span>
+                    <strong>Expandable LFP (Lithium Iron Phosphate)</strong>
+                </li>
+                <li>
+                    <span>Output Protection</span>
+                    <strong>IP65 Weatherproof Surge-Shielded Core</strong>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="container cta-wrapper" id="quote-cta">
+        <div class="cta-card">
+            <h2>Ditch the monthly bills forever.</h2>
+            <p>Share your average monthly power consumption patterns, and our design leads will construct a customized system blueprint.</p>
+            <a href="configuration.html" class="primary-btn">Calculate My Configuration</a>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Solar Solutions. Engineered for Energy Autonomy.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

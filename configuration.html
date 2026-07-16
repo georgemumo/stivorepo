@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Your Configuration - StevenSolar</title>
+    <style>
+        /* Global Styles & Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7fafc; /* Clean background matching your homepage */
+            color: #334155;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        nav .nav-links .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        /* Dark Navigation Bar (Matching StevenSolar Header) */
+        header {
+            background-color: #121d2b;
+            padding: 18px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #f0a500; /* Signature StevenSolar Orange */
+        }
+
+        .back-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #f0a500;
+            color: #f0a500;
+        }
+
+        /* Form Header */
+        .form-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-intro h1 {
+            font-size: 32px;
+            color: #121d2b;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .form-intro p {
+            color: #718096;
+            font-size: 15px;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Core Form Wrapper Card */
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            padding: 40px;
+        }
+
+        /* Color Mix Accent Line top of form */
+        .form-accent-line {
+            height: 4px;
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(to right, #f0a500, #2a9d8f, #2b7cb6);
+            margin-top: -40px;
+            margin-left: -40px;
+            margin-right: -40px;
+            width: calc(100% + 80px);
+            margin-bottom: 35px;
+        }
+
+        /* Section Headings inside Form */
+        .form-section {
+            margin-bottom: 45px;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 30px;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #121d2b;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-num {
+            background-color: #fefaf0;
+            color: #f0a500;
+            border: 2px solid #f0a500;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .section-num.green {
+            background-color: #eefdfa;
+            color: #2a9d8f;
+            border-color: #2a9d8f;
+        }
+
+        .section-num.blue {
+            background-color: #eef7fd;
+            color: #2b7cb6;
+            border-color: #2b7cb6;
+        }
+
+        /* Input Layouts */
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #2d3748;
+            background-color: #fdfdfd;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Interactive Focus Rings linked to theme colors */
+        input:focus, select:focus {
+            border-color: #2a9d8f;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+            background-color: #ffffff;
+        }
+
+        /* Radio & Checkbox Styling */
+        .radio-grid, .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .option-card {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-card:hover {
+            border-color: #f0a500;
+            background-color: #fefaf0;
+        }
+
+        .option-card input[type="radio"],
+        .option-card input[type="checkbox"] {
+            accent-color: #f0a500;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-card span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        /* Submit Button Area */
+        .form-actions {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Matching the Homepage Pill Button */
+        .submit-btn {
+            background-color: #121d2b;
+            color: #ffffff;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 16px 44px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d2f44;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .form-card {
+                padding: 24px;
+            }
+            .form-accent-line {
+                margin-top: -24px;
+                margin-left: -24px;
+                margin-right: -24px;
+                width: calc(100% + 48px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+  <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        
+        <div class="form-intro">
+            <h1>Calculate Your Configuration</h1>
+            <p>Provide details on your property size, roof environment, and power preferences so we can configure your optimal panel layouts and battery storage requirements.</p>
+        </div>
+
+        
+        <div class="form-card">
+            <div class="form-accent-line"></div>
+
+            <form action="https://formspree.io/f/mjgnkbwy" method="POST" style="display: contents;">
+                
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <span class="section-num">1</span>
+                        <h3>Energy & Consumption Patterns</h3>
+                    </div>
+                    
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="monthly-bill">Average Monthly Electricity Bill (Est.)</label>
+                            <select id="monthly-bill" name="monthly_bill" required>
+                                <option value="" disabled selected>Select an estimate...</option>
+                                <option value="under-5k">Under KSh 5,000</option>
+                                <option value="5k-15k">KSh 5,000 - KSh 15,000</option>
+                                <option value="15k-30k">KSh 15,000 - KSh 30,000</option>
+                                <option value="above-30k">KSh 30,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="phase-type">Electrical Phase Connection</label>
+                            <select id="phase-type" name="phase_type" required>
+                                <option value="" disabled selected>Select your phase line...</option>
+                                <option value="single">Single Phase (Standard Residential)</option>
+                                <option value="three">Three Phase (Heavy Machinery / Large Estate)</option>
+                                <option value="unknown">Not Sure / Needs Inspection</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="consumption-split">When do you consume the most power?</label>
+                            <select id="consumption-split" name="consumption_split" required>
+                                <option value="" disabled selected>Select day/night split...</option>
+                                <option value="mostly-day">Daytime (Home offices, appliances run during sunlight)</option>
+                                <option value="mostly-night">Nighttime (Evening entertainment, lighting, AC/heating)</option>
+                                <option value="even">Balanced (Evenly split across 24 hours)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="blackout-freq">Blackout Frequency</label>
+                            <select id="blackout-freq" name="blackout_freq" required>
+                                <option value="" disabled selected>Select frequency...</option>
+                                <option value="rare">Rarely or Never</option>
+                                <option value="moderate">Occasionally (1-2 times a week)</option>
+                                <option value="frequent">Highly Frequent (Almost daily)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Primary Energy Priorities (Select all that apply)</label>
+                        <div class="checkbox-grid">
+                            <label class="option-card">
+                                <input type="checkbox" name="priority" value="bills">
+                                <span>Zero out bills</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="priority" value="backup">
+                                <span>Backup reserve</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="priority" value="independence">
+                                <span>Complete autonomy</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <span class="section-num green">2</span>
+                        <h3>Roof Environment & Building Specs</h3>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="roof-type">Roof Material</label>
+                            <select id="roof-type" name="roof_type" required>
+                                <option value="" disabled selected>Select roof style...</option>
+                                <option value="tile">Clay / Concrete Tiles</option>
+                                <option value="sheet">Corrugated Iron / Tin Sheets</option>
+                                <option value="concrete">Flat Concrete Slab</option>
+                                <option value="decra">Decra / Shingle</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="roof-shading">Tree or Building Shading Obstacles</label>
+                            <select id="roof-shading" name="roof_shading" required>
+                                <option value="" disabled selected>Select shadowing level...</option>
+                                <option value="none">No shadow (Full sun access all day)</option>
+                                <option value="partial">Partial shadow (Blocked in early morning/late afternoon)</option>
+                                <option value="heavy">Heavy shadow (Surrounded by tall trees or structures)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="roof-space">Approx. Roof Space Available (Est.)</label>
+                            <select id="roof-space" name="roof_space" required>
+                                <option value="" disabled selected>Select size estimate...</option>
+                                <option value="small">Small (Less than 20 sq meters)</option>
+                                <option value="medium">Medium (20 - 50 sq meters)</option>
+                                <option value="large">Large (More than 50 sq meters)</option>
+                                <option value="unknown">I have no idea</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Property Status</label>
+                            <div class="radio-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="property_status" value="own" checked>
+                                    <span>I own the property</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="property_status" value="rent">
+                                    <span>I rent the property</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <span class="section-num blue">3</span>
+                        <h3>Battery Reserve Preferences</h3>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="battery-preference">Required Backup Duration (During a blackout)</label>
+                        <select id="battery-preference" name="battery_preference" required>
+                            <option value="" disabled selected>Select preferred runtime...</option>
+                            <option value="none">No battery (Grid-tie only, system turns off during power cuts)</option>
+                            <option value="short">Essential Backup (4 to 6 hours - Lights, TV, Wi-Fi, Fridge)</option>
+                            <option value="long">Extended Backup (12 to 24 hours - Includes water pumps & heavy loads)</option>
+                            <option value="full">Completely Off-Grid (Multiple days of storage redundancy)</option>
+                        </select>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <span class="section-num blue" style="background-color: #eef7fd; color: #2b7cb6; border-color: #2b7cb6;">4</span>
+                        <h3>Contact & Location Details</h3>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="user-name">Full Name</label>
+                            <input type="text" id="user-name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="user-location">Location / Neighborhood</label>
+                            <input type="text" id="user-location" name="location" placeholder="e.g., Kilimani, Nairobi" required>
+                        </div>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="user-phone">Phone Number</label>
+                            <input type="tel" id="user-phone" name="phone" placeholder="e.g., 0712 345 678" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="user-email">Email Address</label>
+                            <input type="email" id="user-email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">CALCULATE CONFIGURATION</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

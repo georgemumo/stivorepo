@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial & Farm Solar Solutions - StevenSolar</title>
+    <style>
+        /* Global Styles & Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7fafc; /* Matches clean background */
+            color: #334155;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        nav .nav-links .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        /* Dark Navigation Bar (StevenSolar Header) */
+        header {
+            background-color: #121d2b;
+            padding: 18px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #f0a500; /* Signature StevenSolar Orange */
+        }
+
+        .back-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #f0a500;
+            color: #f0a500;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #121d2b 0%, #1a2e44 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative bottom color accent on Hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #f0a500, #2a9d8f, #2b7cb6);
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 span {
+            color: #f0a500;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Features/Benefits Grid */
+        .benefits-title {
+            text-align: center;
+            font-size: 24px;
+            color: #121d2b;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .benefit-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #edf2f7;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .icon-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Unique Color Theme Badges */
+        .badge-orange { background-color: #fefaf0; color: #f0a500; border: 1.5px solid #f0a500; }
+        .badge-teal { background-color: #eefdfa; color: #2a9d8f; border: 1.5px solid #2a9d8f; }
+        .badge-blue { background-color: #eef7fd; color: #2b7cb6; border: 1.5px solid #2b7cb6; }
+
+        .benefit-card h3 {
+            font-size: 18px;
+            color: #121d2b;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Call To Action Box */
+        .cta-box {
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1.5px dashed #e2e8f0;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .cta-box h2 {
+            font-size: 24px;
+            color: #121d2b;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: #64748b;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Explore/Action Button */
+        .action-btn {
+            display: inline-block;
+            background-color: #f0a500; /* Signature StevenSolar Orange */
+            color: #121d2b;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 16px 44px;
+            border-radius: 30px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 14px rgba(240, 165, 0, 0.3);
+        }
+
+        .action-btn:hover {
+            background-color: #d99500;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240, 165, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .cta-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Industrial, Commercial & <span>Farm Solar</span></h1>
+            <p>Engineered to power heavy-duty enterprise operations, high-capacity agricultural irrigation, and continuous warehouse cold chains with unmatched grid independence.</p>
+        </section>
+
+        <h2 class="benefits-title">Why Enterprise Solar?</h2>
+
+        <!-- Grid of Benefits -->
+        <section class="benefits-grid">
+            
+            <!-- Benefit 1 -->
+            <div class="benefit-card">
+                <div class="icon-badge badge-orange">🚜</div>
+                <h3>Agricultural Power Autonomy</h3>
+                <p>Seamlessly power large-scale water pumps, automated pivot systems, and farm machinery. Drastically reduce relying on expensive diesel generators during heavy cropping and harvest seasons.</p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="benefit-card">
+                <div class="icon-badge badge-teal">🏭</div>
+                <h3>Industrial & Warehouse Offsets</h3>
+                <p>Convert large roof footprints or open fields into high-output generation arrays. Counteract peak demand pricing periods and lower operations tariffs for manufacturing processes.</p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="benefit-card">
+                <div class="icon-badge badge-blue">❄️</div>
+                <h3>Cold Chain Protection</h3>
+                <p>Keep cooling rooms, storage structures, and processing lines safe from sudden utility blackouts with commercial hybrid battery banks engineered for continuous operations.</p>
+            </div>
+
+        </section>
+
+        <!-- Call To Action Card with Button pointing to the Form -->
+        <section class="cta-box">
+            <h2>Ready to design your custom array?</h2>
+            <p>Every commercial project requires detailed site analysis. Fill out our specialized Commercial Assessment form with your current power connection and machinery load requirements to get started.</p>
+            
+            <!-- BUTTON POINTING TO YOUR FORM FILE -->
+            <a href="commercial-farm-assessment.html" class="action-btn">BEGIN COMMERCIAL ASSESSMENT →</a>
+        </section>
+    </main>
+
+</body>
+</html>

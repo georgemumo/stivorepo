@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - StevenSolar</title>
+    <style>
+        :root {
+            --navy-dark: #121d2b;
+            --navy-light: #1d2f44;
+            --amber: #f0a500;
+            --amber-hover: #d99500;
+            --teal: #2a9d8f;
+            --bg-gray: #f7fafc;
+            --border-color: #e2e8f0;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--amber);
+        }
+
+        .back-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* Hero section */
+        .about-hero {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
+            color: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .about-hero h1 span {
+            color: var(--amber);
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #cbd5e1;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: -40px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--amber);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--navy-dark);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Content Blocks */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .content-block h2 {
+            font-size: 28px;
+            color: var(--navy-dark);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .content-block p {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        /* Values section */
+        .values-section {
+            background-color: var(--navy-dark);
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .values-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card h3 {
+            color: var(--amber);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Certification Stamps */
+        .certifications {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .certifications h2 {
+            font-size: 24px;
+            color: var(--navy-dark);
+            margin-bottom: 30px;
+        }
+
+        .cert-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cert-badge {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            color: var(--navy-light);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Driving Kenya's <span>Solar Revolution</span></h1>
+            <p>Providing high-efficiency renewable energy systems engineered for agricultural, industrial, and residential applications.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- Interactive Stat Badges -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">450 kW+</div>
+                <div class="stat-label">Power Managed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Engineering Support</div>
+            </div>
+        </div>
+
+        <!-- Vision and Story Split -->
+        <div class="split-layout">
+            <div class="content-block">
+                <h2>Our Mission & Vision</h2>
+                <p>At StevenSolar, we aim to lower overhead costs for farms, corporate operations, and families through modular energy systems. We match tier-1 materials with intelligent power flow layouts to guarantee long-term operational resilience.</p>
+                <p>Our vision is to eliminate blackouts and high energy tariffs by serving as Kenya's leading developer of off-grid microgrids and optimized hybrid systems.</p>
+            </div>
+            <div class="content-block" style="background-color: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <h3 style="color: var(--navy-dark); font-weight: 800; margin-bottom: 15px;">Why Choose StevenSolar?</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                        <span style="color: var(--teal); position: absolute; left: 0; font-weight: bold;">✓</span>
+                        <strong>Certified EPRA Technicians:</strong> All installations align strictly with national safety parameters.
+                    </li>
+                    <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                        <span style="color: var(--teal); position: absolute; left: 0; font-weight: bold;">✓</span>
+                        <strong>Top-Tier Inventory:</strong> Official partner systems including Jinko, Deye, and Victron components.
+                    </li>
+                    <li style="margin-bottom: 0; padding-left: 24px; position: relative;">
+                        <span style="color: var(--teal); position: absolute; left: 0; font-weight: bold;">✓</span>
+                        <strong>Custom System Layouts:</strong> Custom solutions built for your actual site loads, not generic packages.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Core Values Section -->
+        <section class="values-section">
+            <h2 class="values-title">Our Operational Pillars</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Engineering Integrity</h3>
+                    <p>We do not compromise on quality. From cabling thickness to inverter configurations, our work is engineered for 25+ years of performance.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Absolute Transparency</h3>
+                    <p>No hidden installation charges. We offer complete price breakdowns on components, racking structures, and logistics.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Client Support</h3>
+                    <p>Our work doesn't end at commissioning. We provide active system tuning, remote telemetry monitoring, and rapid support dispatches.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="certifications">
+            <h2>Authorized & Certified By</h2>
+            <div class="cert-logos">
+                <div class="cert-badge">EPRA Licensed Solar PV</div>
+                <div class="cert-badge">NEMA Certified Compliant</div>
+                <div class="cert-badge">National Construction Authority</div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

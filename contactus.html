@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Steven's Solar Installations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navigation Bar (Identical to Home/Services Page) */
+        nav {
+            background-color: #1a252f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #ffffff;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        nav .nav-links .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        /* Contact Hero Banner */
+        .contact-hero {
+            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('battery.jfif') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-hero p {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        /* Contact Info Column */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.2rem;
+            color: #1a252f;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info .desc {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .info-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #fcfcfc;
+            border: 2px solid #eaeaea;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #f39c12;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .info-text h3 {
+            font-size: 1.15rem;
+            color: #1a252f;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-text p {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .info-text a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form Column */
+        .contact-form-wrapper {
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border-top: 5px solid #f39c12;
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 2rem;
+            color: #1a252f;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1a252f;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fcfcfc;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #f39c12;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #1a252f;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #f39c12;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: #1a252f;
+            color: #ffffff;
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .faq-header p {
+            color: #bdc3c7;
+            font-size: 1.1rem;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .faq-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .faq-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .faq-item p {
+            color: #bdc3c7;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer (Identical to Home/Services Page) */
+        footer {
+            background-color: #1a252f;
+            color: #ffffff;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 1.2rem 1rem;
+            }
+            nav .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .contact-hero h1 { font-size: 2.2rem; }
+            .contact-hero p { font-size: 1rem; }
+            .contact-form-wrapper { padding: 2rem 1.5rem; }
+            .faq-header h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Section -->
+    <nav>
+        <div class="logo">Steven<span>Solar</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Our Portfolio</a></li>
+            <li><a href="contactus.html" class="active">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contact Hero Banner -->
+    <section class="contact-hero">
+        <h1>Connect with Steven</h1>
+        <p>Ready to design your clean energy future? Get in touch today, and let's configure the perfect solar setup for you.</p>
+    </section>
+
+    <!-- Contact Container -->
+    <section class="contact-container">
+        
+        <!-- Left: Contact Details -->
+        <div class="contact-info">
+            <div>
+                <h2>Get in Touch</h2>
+                <p class="desc">Have questions about packages, pricing, or system capabilities? Fill out the form or reach out directly. Steven typically reviews and responds to all inquiries within 24 hours.</p>
+            </div>
+
+            <div class="info-details">
+                <!-- Location -->
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h3>Our Base</h3>
+                        <p>Nairobi, Kenya</p>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h3>Call or WhatsApp</h3>
+                        <p><a href="tel:+254 111740989">+254 111740989</a></p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <h3>Email Address</h3>
+                        <p><a href="mailto:georgemumo182@gmail.com">georgemumo182@gmail.com</a></p>
+                    </div>
+                </div>
+
+                
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">
+                        <h3>Business Hours</h3>
+                        <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Inquiry Form -->
+        <div class="contact-form-wrapper">
+            <h2>Send an Inquiry</h2>
+            <form action="https://formspree.io/f/xzdndnkr" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 0712345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="interest">What system setup do you need?</label>
+                    <select id="interest" name="interest" class="form-control" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="residential">🏠 Residential Rooftop Setup</option>
+                        <option value="commercial">🚜 Commercial & Farm Array</option>
+                        <option value="hybrid">🔋 Hybrid Backup & Grid-Tie</option>
+                        <option value="other">❓ Other / Custom Request</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" class="form-control" placeholder="Tell us about your property, current electricity bills, or power issues..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message ➔</button>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common solar installation queries.</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How long does a typical installation take?</h3>
+                    <p>A standard residential rooftop installation is normally completed within 1 to 3 days once the equipment is on-site. Larger agricultural or industrial farm systems can take between 5 to 10 working days.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Can I start with a small system and upgrade later?</h3>
+                    <p>Absolutely! Steven designs systems with scalability in mind. We can install a basic inverter and solar panel setup now, and expand your battery storage or add more panels as your energy needs or budget grow.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What maintenance does my solar system require?</h3>
+                    <p>Solar panels require minimal maintenance. Washing them every few months to remove dust or debris is usually enough to keep them operating at peak performance. Steven also provides routine check-ups and diagnostic support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Steven Solar Installations. All Rights Reserved. Engineered for excellence.</p>
+    </footer>
+
+</body>
+</html>
