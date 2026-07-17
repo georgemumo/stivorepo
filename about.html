@@ -57,14 +57,14 @@
             color: #ffffff;
         }
 
-        nav .nav-links {
+        nav .navlinks {
             display: flex;
             gap: 1.8rem;
             list-style: none;
             align-items: center;
         }
 
-        nav .nav-links a {
+        nav .navlinks a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
@@ -72,8 +72,14 @@
             transition: color 0.2s ease;
         }
 
-        nav .nav-links a:hover {
+        nav .navlinks a:hover {
             color: #f39c12;
+        }
+
+        nav .navlinks .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
         }
 
         .logo {
@@ -104,7 +110,7 @@
             color: var(--amber);
         }
 
-        /* Hero section */
+        
         .about-hero {
             background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
             color: #ffffff;
@@ -129,7 +135,7 @@
             color: #cbd5e1;
         }
 
-        /* Stats Grid */
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -161,7 +167,7 @@
             text-transform: uppercase;
         }
 
-        /* Content Blocks */
+        
         .split-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -189,7 +195,7 @@
             color: var(--text-dark);
         }
 
-        /* Values section */
+        
         .values-section {
             background-color: var(--navy-dark);
             color: #ffffff;
@@ -222,7 +228,7 @@
             font-size: 14px;
         }
 
-        /* Certification Stamps */
+        
         .certifications {
             text-align: center;
             margin-bottom: 60px;
@@ -256,7 +262,7 @@
 
     <nav>
         <div class="logo">Steven<span>Solar</span></div>
-        <ul class="nav-links">
+        <ul class="navlinks">
             <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html" class="active">Services</a></li>
@@ -264,7 +270,6 @@
             <li><a href="contactus.html">Contact Us</a></li>
         </ul>
     </nav>
-
 
     <section class="about-hero">
         <div class="container">
@@ -275,7 +280,7 @@
 
     <main class="container">
         
-        <!-- Interactive Stat Badges -->
+        
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">5+</div>
@@ -295,7 +300,7 @@
             </div>
         </div>
 
-        <!-- Vision and Story Split -->
+        
         <div class="split-layout">
             <div class="content-block">
                 <h2>Our Mission & Vision</h2>
@@ -321,7 +326,7 @@
             </div>
         </div>
 
-        <!-- Core Values Section -->
+        
         <section class="values-section">
             <h2 class="values-title">Our Operational Pillars</h2>
             <div class="values-grid">
@@ -340,7 +345,7 @@
             </div>
         </section>
 
-        <!-- Certifications -->
+        
         <section class="certifications">
             <h2>Authorized & Certified By</h2>
             <div class="cert-logos">

@@ -18,7 +18,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Top Navigation Bar (Identical to Home Page) */
+        
         nav {
             background-color: #1a252f;
             padding: 1rem 2rem;
@@ -40,14 +40,14 @@
             color: #ffffff;
         }
 
-        nav .nav-links {
+            nav .navlinks {
             display: flex;
             gap: 1.8rem;
             list-style: none;
             align-items: center;
         }
 
-        nav .nav-links a {
+        nav .navlinks a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
@@ -55,17 +55,17 @@
             transition: color 0.2s ease;
         }
 
-        nav .nav-links a:hover {
+        nav .navlinks a:hover {
             color: #f39c12;
         }
 
-        nav .nav-links .active {
+        nav .navlinks .active {
             color: #f39c12;
             border-bottom: 2px solid #f39c12;
             padding-bottom: 4px;
         }
 
-        /* Services Hero Banner */
+        
         .services-hero {
             background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('panels.jfif') no-repeat center center/cover;
             color: #ffffff;
@@ -88,7 +88,7 @@
             line-height: 1.6;
         }
 
-        /* Services Grid Section */
+        
         .services-section {
             padding: 6rem 2rem;
             max-width: 1200px;
@@ -124,7 +124,7 @@
             background: #f39c12;
         }
 
-        /* Custom top border colors to match home page flow nodes */
+        
         .service-card.commercial::before { background: #16a085; }
         .service-card.hybrid::before { background: #2980b9; }
 
@@ -198,7 +198,7 @@
         .service-card.commercial .service-btn:hover { background-color: #16a085; border-color: #16a085; }
         .service-card.hybrid .service-btn:hover { background-color: #2980b9; border-color: #2980b9; }
 
-        /* Process Steps Section */
+        
         .process-section {
             background-color: #1a252f;
             color: #ffffff;
@@ -263,7 +263,7 @@
             line-height: 1.6;
         }
 
-        /* Call To Action Banner */
+        
         .cta-banner {
             background-color: #ffffff;
             text-align: center;
@@ -304,7 +304,7 @@
             transform: translateY(-2px);
         }
 
-        /* Footer (Identical to Home Page) */
+        
         footer {
             background-color: #1a252f;
             color: #ffffff;
@@ -313,7 +313,7 @@
             font-size: 0.95rem;
         }
 
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -321,7 +321,7 @@
                 text-align: center;
                 padding: 1.2rem 1rem;
             }
-            nav .nav-links {
+            nav .navlinks {
                 gap: 1.2rem;
                 flex-wrap: wrap;
                 justify-content: center;
@@ -338,7 +338,7 @@
 
     <nav>
         <div class="logo">Steven<span>Solar</span></div>
-        <ul class="nav-links">
+        <ul class="navlinks">
             <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html" class="active">Services</a></li>

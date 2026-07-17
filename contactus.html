@@ -18,7 +18,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Top Navigation Bar (Identical to Home/Services Page) */
+        
         nav {
             background-color: #1a252f;
             padding: 1rem 2rem;
@@ -40,14 +40,14 @@
             color: #ffffff;
         }
 
-        nav .nav-links {
+            nav .navlinks {
             display: flex;
             gap: 1.8rem;
             list-style: none;
             align-items: center;
         }
 
-        nav .nav-links a {
+        nav .navlinks a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
@@ -55,17 +55,17 @@
             transition: color 0.2s ease;
         }
 
-        nav .nav-links a:hover {
+        nav .navlinks a:hover {
             color: #f39c12;
         }
 
-        nav .nav-links .active {
+        nav .navlinks .active {
             color: #f39c12;
             border-bottom: 2px solid #f39c12;
             padding-bottom: 4px;
         }
 
-        /* Contact Hero Banner */
+        
         .contact-hero {
             background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('battery.jfif') no-repeat center center/cover;
             color: #ffffff;
@@ -88,7 +88,7 @@
             line-height: 1.6;
         }
 
-        /* Main Contact Container */
+        
         .contact-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -98,7 +98,7 @@
             gap: 4rem;
         }
 
-        /* Contact Info Column */
+        
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -166,7 +166,7 @@
             text-decoration: underline;
         }
 
-        /* Contact Form Column */
+        
         .contact-form-wrapper {
             background-color: #ffffff;
             border: 1px solid #eaeaea;
@@ -237,7 +237,7 @@
             box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
         }
 
-        /* FAQ Section */
+        
         .faq-section {
             background-color: #1a252f;
             color: #ffffff;
@@ -291,7 +291,7 @@
             font-size: 0.95rem;
         }
 
-        /* Footer (Identical to Home/Services Page) */
+        
         footer {
             background-color: #1a252f;
             color: #ffffff;
@@ -300,7 +300,7 @@
             font-size: 0.95rem;
         }
 
-        /* Responsive Design */
+        
         @media (max-width: 992px) {
             .contact-container {
                 grid-template-columns: 1fr;
@@ -316,7 +316,7 @@
                 text-align: center;
                 padding: 1.2rem 1rem;
             }
-            nav .nav-links {
+            nav .navlinks {
                 gap: 1.2rem;
                 flex-wrap: wrap;
                 justify-content: center;
@@ -330,10 +330,10 @@
 </head>
 <body>
 
-    <!-- Header Navigation Section -->
+    
     <nav>
         <div class="logo">Steven<span>Solar</span></div>
-        <ul class="nav-links">
+        <ul class="navlinks">
             <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html">Services</a></li>
@@ -342,16 +342,16 @@
         </ul>
     </nav>
 
-    <!-- Contact Hero Banner -->
+    
     <section class="contact-hero">
         <h1>Connect with Steven</h1>
         <p>Ready to design your clean energy future? Get in touch today, and let's configure the perfect solar setup for you.</p>
     </section>
 
-    <!-- Contact Container -->
+    
     <section class="contact-container">
         
-        <!-- Left: Contact Details -->
+        
         <div class="contact-info">
             <div>
                 <h2>Get in Touch</h2>
@@ -359,7 +359,7 @@
             </div>
 
             <div class="info-details">
-                <!-- Location -->
+                
                 <div class="info-item">
                     <div class="info-icon">📍</div>
                     <div class="info-text">
@@ -368,7 +368,7 @@
                     </div>
                 </div>
 
-                <!-- Phone -->
+                
                 <div class="info-item">
                     <div class="info-icon">📞</div>
                     <div class="info-text">
@@ -377,7 +377,7 @@
                     </div>
                 </div>
 
-                <!-- Email -->
+                
                 <div class="info-item">
                     <div class="info-icon">✉️</div>
                     <div class="info-text">
@@ -398,7 +398,7 @@
             </div>
         </div>
 
-        <!-- Right: Inquiry Form -->
+        
         <div class="contact-form-wrapper">
             <h2>Send an Inquiry</h2>
             <form action="https://formspree.io/f/xzdndnkr" method="POST">
@@ -439,7 +439,7 @@
 
     </section>
 
-    <!-- FAQs Section -->
+    
     <section class="faq-section">
         <div class="faq-container">
             <div class="faq-header">
@@ -466,7 +466,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    
     <footer>
         <p>&copy; 2026 Steven Solar Installations. All Rights Reserved. Engineered for excellence.</p>
     </footer>

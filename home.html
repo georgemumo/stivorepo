@@ -18,7 +18,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Top Navigation Bar with Right-Aligned Links */
+        
         nav {
             background-color: #1a252f;
             padding: 1rem 2rem;
@@ -30,24 +30,14 @@
             z-index: 1000;
         }
 
-        nav .logo {
-            color: #f39c12;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        nav .logo span {
-            color: #ffffff;
-        }
-
-        nav .nav-links {
+        nav .navlinks {
             display: flex;
             gap: 1.8rem;
             list-style: none;
             align-items: center;
         }
 
-        nav .nav-links a {
+        nav .navlinks a {
             color: #ffffff;
             text-decoration: none;
             font-weight: 600;
@@ -55,11 +45,21 @@
             transition: color 0.2s ease;
         }
 
-        nav .nav-links a:hover {
+        nav .navlinks a:hover {
             color: #f39c12;
         }
 
-        /* Hero Carousel Styling */
+        nav .navlinks .active {
+            color: #f39c12;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 4px;
+        }
+
+        nav .navlinks a:hover {
+            color: #f39c12;
+        }
+
+        
         .carousel-wrapper {
             position: relative;
             width: 100%;
@@ -191,7 +191,7 @@
             display: flex;
         }
 
-        /* Selection Section & Grid Node Flows */
+        
         .selection-section {
             padding: 6rem 2rem;
             background: #ffffff;
@@ -328,7 +328,7 @@
             font-size: 0.95rem;
         }
 
-        /* Responsiveness Adjustments */
+        
         @media (max-width: 992px) {
             .node-body {
                 flex-direction: column;
@@ -350,7 +350,7 @@
                 text-align: center;
                 padding: 1.2rem 1rem;
             }
-            nav .nav-links {
+            nav .navlinks {
                 gap: 1.2rem;
                 flex-wrap: wrap;
                 justify-content: center;
@@ -370,7 +370,7 @@
 
     <nav>
         <div class="logo">Steven<span>Solar</span></div>
-        <ul class="nav-links">
+        <ul class="navlinks">
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="projects.html">Our Portfolio</a></li>

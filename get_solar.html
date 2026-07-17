@@ -27,12 +27,25 @@
             width: 100%;
             max-width: 600px;
             padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eef2f5;
-        }
 
-        /* Progress Bar */
+            nav .navlinks {
+                display: flex;
+                gap: 1.8rem;
+                list-style: none;
+                align-items: center;
+            }
+
+            nav .navlinks a {
+                color: #ffffff;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1rem;
+                transition: color 0.2s ease;
+            }
+
+            nav .navlinks a:hover {
+                color: #f39c12;
+            }
         .progress-wrapper {
             margin-bottom: 2rem;
         }
@@ -58,7 +71,7 @@
             transition: width 0.3s ease;
         }
 
-        /* Heading */
+        
         h2 {
             font-size: 1.6rem;
             color: #2d3748;
@@ -70,7 +83,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Wizard Steps */
+        
         .wizard-step {
             display: none;
         }
@@ -79,7 +92,7 @@
             animation: fadeIn 0.4s ease-in-out;
         }
 
-        /* Selection Options Grid */
+        
         .options-grid {
             display: flex;
             flex-direction: column;
@@ -108,7 +121,7 @@
             color: #dd6b20;
         }
 
-        /* Inputs for Final Step */
+        
         .form-group {
             margin-bottom: 1.2rem;
         }
@@ -132,7 +145,7 @@
             border-color: #f39c12;
         }
 
-        /* Navigation Buttons */
+        
         .btn-wrapper {
             margin-top: 2rem;
             display: flex;
@@ -199,14 +212,11 @@
 
 <div class="wizard-container" id="wizardBox">
 
-
     <form id="solarForm" action="https://formspree.io/f/xeebnwbe" method="POST" style="display: contents;">
-
 
         <input type="hidden" name="Monthly Bill" id="hiddenBill">
         <input type="hidden" name="Solar Goal" id="hiddenGoal">
         <input type="hidden" name="Roof Type" id="hiddenRoof">
-
 
         <div class="progress-wrapper" id="progressSection">
             <div class="progress-text">
@@ -218,7 +228,6 @@
             </div>
         </div>
 
-
         <div class="wizard-step active" id="step1">
             <h2>Let's Design Your Custom Solar System</h2>
             <p class="subtitle">What is your average monthly electricity bill?</p>
@@ -228,7 +237,6 @@
                 <div class="option-card" onclick="selectOption(1, 'Over 15,000 KES')">Over 15,000 KES</div>
             </div>
         </div>
-
 
         <div class="wizard-step" id="step2">
             <h2>What is your primary energy goal?</h2>
@@ -240,7 +248,6 @@
             </div>
         </div>
 
-
         <div class="wizard-step" id="step3">
             <h2>What type of roof structural framework do you have?</h2>
             <p class="subtitle">This determines the mounting mounts required for your system layout.</p>
@@ -251,7 +258,6 @@
                 <div class="option-card" onclick="selectOption(3, 'Ground mount open space installation')">Ground mount open space installation</div>
             </div>
         </div>
-
 
         <div class="wizard-step" id="step4">
             <h2>Where should we send your custom blueprint?</h2>
@@ -271,7 +277,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="btn-wrapper" id="navigationControls">
             <button type="button" class="btn-back" id="btnBack" onclick="changeStep(-1)" disabled>Back</button>
@@ -364,7 +369,6 @@
         btnNext.disabled = true;
         btnNext.innerText = "Sending...";
 
-        // Submit form data asynchronously using AJAX Fetch API
         fetch(form.action, {
             method: form.method,
             body: new FormData(form),
@@ -393,12 +397,10 @@
         const finalPhone = document.getElementById('userPhone').value;
         const finalLoc = document.getElementById('userLocation').value;
 
-
         document.getElementById('progressSection').style.display = "none";
         document.getElementById('trustFooter').style.display = "none";
         document.getElementById('navigationControls').style.display = "none";
         document.getElementById('step4').style.display = "none";
-
 
         document.getElementById('wizardBox').innerHTML = `
             <div class="success-box">
